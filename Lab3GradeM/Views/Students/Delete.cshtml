@@ -1,0 +1,27 @@
+﻿@model Tuple<Classroom, Student, int>
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to delete <u>@Model.Item2.StudentName</u> from this classroom?</h3>
+<div>
+    <hr />    
+    <form asp-action="Delete">
+        <div>
+            <input type="hidden" asp-for="Item2.StudentId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a href="javascript:history.back()" class="btn btn-primary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@using (Html.BeginForm("DetailsToAddStudent","Classrooms",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-sm-3">
+        <input type="text" hidden name="Id" value="@Model.Item2.StudentId"/>
+        <input type="text" hidden name="classId" value="@Model.Item3"/>
+        <input type="submit" class="btn btn-primary" value="Create" />
+        <a asp-controller="Classrooms" asp-action="Details" asp-route-id="@Model.Item3" class="btn btn-danger">Cancel</a>
+    </div>
+}

@@ -1,0 +1,49 @@
+﻿@model Tuple<Classroom, IEnumerable<Student>, Student, int>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Classroom Name: <u>@Model.Item1.ClassName</u></h1>
+@{
+    var classId = @Model.Item4; 
+}
+
+<p>
+    <a asp-action="Index" class="btn btn-primary">Return to Classroom List</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Current Students
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Item2)
+{
+        <tr>
+            <td>
+                @item.StudentName
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<br /><br /><br />
+New Student Name
+@using (Html.BeginForm("AddStudent","Classrooms",FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-sm-3">
+        <input type="text" hidden name="classId" value="@Model.Item4"/>
+        <input type="text" name="studentName" class="form-control"/>
+        <input type="submit" class="btn btn-primary" value="Create" />
+        <a asp-controller="Classrooms" asp-action="Details" asp-route-id="@Model.Item4" class="btn btn-danger">Cancel</a>
+    </div>
+}
+
+

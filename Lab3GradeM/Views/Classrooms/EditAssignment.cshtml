@@ -1,0 +1,42 @@
+﻿@model AssignmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>|| @Model.classroomName ||</h1>
+<th />
+<h2> Student Name: @Model.studentName </h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New Assignment</a>
+</p>
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditAssignment" asp-route-assignmentId="@Model.assignment.AssignmentId"
+        asp-route-studentId="@Model.assignment.StudentId" asp-route-classId="@Model.classroomId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="assignment.AssignmentId" />
+            <div class="form-group">
+                <label asp-for="assignment.AssignmentName" class="control-label"></label>
+                <input asp-for="assignment.AssignmentName" class="form-control" />
+                <span asp-validation-for="assignment.AssignmentName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="assignment.Grade" class="control-label"></label>
+                <input asp-for="assignment.Grade" class="form-control" />
+                <span asp-validation-for="assignment.Grade" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="assignment.StudentId" class="control-label"></label>
+                <input asp-for="assignment.StudentId" class="form-control" value="@Model.studentId"/>
+                <span asp-validation-for="assignment.StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>

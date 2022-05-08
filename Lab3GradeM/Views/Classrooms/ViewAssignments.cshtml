@@ -1,0 +1,64 @@
+﻿@model AssignmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>|| @Model.classroomName ||</h1>
+<th />
+<h2> Student Name: @Model.studentName </h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="CreateAssignment" asp-route-studentId="@Model.studentId"
+    asp-route-classId="@Model.classroomId">Create New Assignment </a>
+    <a asp-action="Index" class="btn btn-primary">Return to Classroom List</a>
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Assignment Name
+            </th>
+            <th>
+                Grade
+            </th>
+            <th>
+                Status
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.assignments) {
+        <tr>
+            <td>
+                @item.AssignmentName
+            </td>
+            <td>
+                @item.Grade
+            </td>
+            <td>
+                @if(item.Grade >= 0)
+                {
+                    <p>Complete</p>
+                }
+                @if(item.Grade == null)
+                {
+                    <p>Incomplete</p>
+                }
+            </td>
+
+            <td>
+                <a class="btn btn-primary" asp-action="EditAssignment" asp-route-assignmentId="@item.AssignmentId" asp-route-studentId="@item.StudentId"
+                asp-route-classId="@Model.classroomId">Edit</a> |
+                <a class="btn btn-danger" asp-action="DeleteAssignment" asp-route-assignmentId="@item.AssignmentId" asp-route-studentId="@item.StudentId"
+                asp-route-classId="@Model.classroomId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-action="Details" asp-route-id="@Model.classroomId">Go Back</a>

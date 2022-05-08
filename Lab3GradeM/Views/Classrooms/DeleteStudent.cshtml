@@ -1,0 +1,15 @@
+﻿@model PassDelStudentViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to delete <u>@Model.student.StudentName</u> from this classroom?</h3>
+
+<form asp-action="DeleteStudent" asp-route-studentId="@Model.student.StudentId" asp-route-classId="@Model.classId">
+    <div>
+        <input type="hidden" asp-for="@Model.student.StudentId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a href="javascript:history.back()" class="btn btn-primary">Cancel</a>
+    </div>
+</form>

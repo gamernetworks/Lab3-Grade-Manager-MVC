@@ -1,0 +1,49 @@
+﻿@model TestViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Classroom Name: <u>@Model.classroomName.ClassName</u></h1>
+
+<p>
+    <a asp-action="Index" class="btn btn-primary">Return to Classroom List</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Student Name
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.students)
+{
+        <tr>
+            <td>
+                <a asp-action="ViewAssignments" asp-route-studentId="@item.StudentId" asp-route-classId="@item.ClassId" >@item.StudentName</a>                
+            </td>
+            <td>
+                <a asp-action="DeleteStudent" asp-route-studentId="@item.StudentId" asp-route-classId="@item.ClassId"
+                class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    <a asp-controller="Classrooms" asp-action="AddStudent" asp-route-id="@Model.classId" class="btn btn-primary">Add New Student</a>
+</p>
+<br /> <br /> <br />
+
+<hr />
+<h4>Top Student</h4>
+<hr />
+<h4>Worst Student</h4>
+<hr />
+<h4>Class Average</h4>

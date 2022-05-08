@@ -1,0 +1,17 @@
+﻿@model Lab3GradeM.Models.Classroom
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to delete the <u>@Model.ClassName</u> classroom?</h3>
+<div>
+    <hr />    
+    <form asp-action="Delete">
+        <div>
+            <input type="hidden" asp-for="ClassId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a href="javascript:history.back()" class="btn btn-primary">Cancel</a>
+        </div>
+    </form>
+</div>

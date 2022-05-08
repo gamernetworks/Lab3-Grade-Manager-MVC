@@ -1,0 +1,27 @@
+﻿@model AssignmentDetailsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>|| @Model.classroomName ||</h1>
+<th />
+<h2> Student Name: @Model.studentName </h2>
+
+<h3>Are you sure you want to delete the <u>@Model.assignmentName</u> assignment?</h3>
+<div>
+    <hr />    
+    <form asp-action="DeleteAssignment" asp-route-studentId="@Model.studentId" asp-route-classId="@Model.classroomId" 
+    asp-route-assignmentId="@Model.assignmentId" asp-route-studentId="@Model.assignmentId">
+        <div>
+            <input type="hidden" asp-for="assignment.AssignmentId" />
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a href="javascript:history.back()" class="btn btn-primary">Cancel</a>
+        </div>
+    </form>
+</div>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
